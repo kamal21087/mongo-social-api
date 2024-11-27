@@ -76,7 +76,7 @@ npm run dev
 | DELETE | /api/thoughts/:thoughtId/reactions/:reactionId | Remove a reaction            | 
 
 ## **Walkthrough Video**
-Here is the walkthrough video demonstrating the Social Media API functionality:
+Here is the walkthrough video demonstrating the Social Media API functionality: https://app.screencastify.com/v2/manage/videos/qxoagsV2HmxAXPioDejz 
 
 ## **License**
 This project is licensed under the MIT License.

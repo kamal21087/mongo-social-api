@@ -1,4 +1,4 @@
-import { Schema, model, Types, Document } from 'mongoose';
+import { Schema, model, Document, Types } from 'mongoose';
 
 interface IUser extends Document {
   username: string;
@@ -9,10 +9,35 @@ interface IUser extends Document {
 }
 
 const userSchema = new Schema<IUser>({
-  username: { type: String, required: true, unique: true, trim: true },
-  email: { type: String, required: true, unique: true, match: /.+@.+\..+/ },
-  thoughts: [{ type: Schema.Types.ObjectId, ref: 'Thought' }],
-  friends: [{ type: Schema.Types.ObjectId, ref: 'User' }],
+  username: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+    match: [/.+@.+\..+/, 'Must be a valid email address'],
+  },
+  thoughts: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Thought',
+    },
+  ],
+  friends: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
+}, {
+  toJSON: {
+    virtuals: true,
+  },
+  id: false,
 });
 
 userSchema.virtual('friendCount').get(function () {
